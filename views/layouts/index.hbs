@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <title>Головна</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="content_wrapper">
+                <div class="wrapper_child-content wrapper_left-content">
+                    <h1 class="left_title-login">
+                        Найкращий щоденник <br>
+                        <div style="color: #1266F1">для успішних учнів</div>
+                    </h1>
+                    <p class="left_undertitle-login">
+                        Найбільшу роль в освітньому процесі на сьогодні є допомога учневі в пізнанні вивчаємого
+                        матеріалу, а саме у взаємному звязку між учнем та учителем. Саме тому ми представляємо вам
+                        щоденник, в якому учні нашого навчального закладу зможуть скористатись усіма сучасними методами
+                        комунікації та отримають новий досвід у вивченні програмування.
+                    </p>
+                </div>
+                <div class="wrapper_child-content wrapper_right-content">
+                    <form id="right_form" class="right_form-log">
+                        <input type="text" placeholder="Логін" name="login" id="form_login">
+                        <div class="form_line">
+                            <input type="password" placeholder="Пароль" name="password" id="form_passwd">
+                            <div class="line_button-passwd"></div>
+                        </div>
+
+                        <div class="form_line">
+                            <div class="line_wrapper">
+                                <input type="checkbox" name="notforget" id="notforget" />
+                                <label for="notforget" class="wrapper_text-line">Запам`ятати мене</label>
+                            </div>
+
+                            <a href="#" class="line_passforgot-form">Забув пароль?</a>
+                        </div>
+                        <button class="form_submit" type="submit">Авторизуватись</button>
+                        <div class="form_line">
+                            <div class="line_noaccount">Немає аккаунту?</div>
+                            <a href="#" class="line_contactus">Зв`язатись з нами</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{> footer}}
+    </div>
+    <script src="../js/index.js"></script>
+</body>
+
+</html>

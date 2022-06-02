@@ -1,0 +1,458 @@
+<html lang="ua">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="json" href="">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/teacher_client.css" />
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="loading_window">
+        <div class="window_loader">
+            <div class="loader_dots">
+                <div class="dots_dot dots_dot1"></div>
+                <div class="dots_dot dots_dot2"></div>
+                <div class="dots_dot dots_dot3"></div>
+                <div class="dots_dot dots_dot4"></div>
+                <div class="dots_dot dots_dot5"></div>
+                <div class="dots_dot dots_dot6"></div>
+                <div class="dots_dot dots_dot7"></div>
+                <div class="dots_dot dots_dot8"></div>
+            </div>
+            <div class="window_title">Загрузка...</div>
+        </div>
+    </div>
+
+    <div class="container container-overflow">
+
+        <div class="content">
+            <div class="content_title">Групи ШКМ</div>
+            <div class="content_searchbar">
+                <div class="searchbar_wrapper">
+                    <div class="wrapper_img-search"></div>
+                    <input type="text" placeholder="Шукати" class="wrapper_searchengine">
+                    <input type="button" value="" class="wrapper_searchbutton">
+                </div>
+            </div>
+            <div class="content_filters">
+                <input type="checkbox" checked hidden name="" id="filters_opened">
+                <label for="filters_opened" id="filters_label">
+                    <div class="opened_image"></div>
+                    <div class="opened_text">Фільтри груп</div>
+                </label>
+                <div class="filters_wrapper">
+                    <div class="wrapper_classes-filters">
+                        <div class="classes_title-filter">
+                            Клас
+                        </div>
+                        <div class="classes_wrapper">
+                            <div class="wrapper_left-classes">
+                                <div class="left_line-classes">
+                                    <input type="radio" name="classes" hidden id="left_radio1-classes"
+                                        class="left_radio-classes left_radio1-classes">
+                                    <label for="left_radio1-classes" class="left_fakeradio-classes">
+                                        <div class="fakeradio_dot-classes"></div>
+                                    </label>
+                                    <label for="left_radio1-classes" class="line_text-classes">1 клас</label>
+                                </div>
+                                <div class="left_line-classes">
+                                    <input type="radio" name="classes" hidden id="left_radio2-classes"
+                                        class="left_radio-classes left_radio2-classes">
+                                    <label for="left_radio2-classes" class="left_fakeradio-classes">
+                                        <div class="fakeradio_dot-classes"></div>
+                                    </label>
+                                    <label for="left_radio2-classes" class="line_text-classes">2 клас</label>
+                                </div>
+                                <div class="left_line-classes">
+                                    <input type="radio" name="classes" hidden id="left_radio3-classes"
+                                        class="left_radio-classes left_radio3-classes">
+                                    <label for="left_radio3-classes" class="left_fakeradio-classes">
+                                        <div class="fakeradio_dot-classes"></div>
+                                    </label>
+                                    <label for="left_radio3-classes" class="line_text-classes">3 клас</label>
+                                </div>
+                                <div class="left_line-classes">
+                                    <input type="radio" name="classes" hidden id="left_radio4-classes"
+                                        class="left_radio-classes left_radio4-classes">
+                                    <label for="left_radio4-classes" class="left_fakeradio-classes">
+                                        <div class="fakeradio_dot-classes"></div>
+                                    </label>
+                                    <label for="left_radio4-classes" class="line_text-classes">4 клас</label>
+                                </div>
+                            </div>
+                            <div class="wrapper_right-classes">
+                                <div class="right_line-classes">
+                                    <input type="checkbox" id="line_checkbox1-classes" hidden
+                                        class="line_checkbox-classes line_checkbox1-classes">
+                                    <label for="line_checkbox1-classes" class="line_fakecheckbox-classes">
+                                        <div class="fakecheckbox_tick-classes"></div>
+                                    </label>
+                                    <label for="line_checkbox1-classes" class="line_text-classes">5 клас</label>
+                                </div>
+                                <div class="right_line-classes">
+                                    <input type="checkbox" hidden id="line_checkbox2-classes"
+                                        class="line_checkbox-classes line_checkbox2-classes">
+                                    <label for="line_checkbox2-classes" class="line_fakecheckbox-classes">
+                                        <div class="fakecheckbox_tick-classes"></div>
+                                    </label>
+                                    <label for="line_checkbox2-classes" class="line_text-classes">6 клас</label>
+                                </div>
+                                <div class="right_line-classes">
+                                    <input type="checkbox" hidden id="line_checkbox3-classes"
+                                        class="line_checkbox-classes line_checkbox3-classes">
+                                    <label for="line_checkbox3-classes" class="line_fakecheckbox-classes">
+                                        <div class="fakecheckbox_tick-classes"></div>
+                                    </label>
+                                    <label for="line_checkbox3-classes" class="line_text-classes">7 клас</label>
+                                </div>
+                                <div class="right_line-classes">
+                                    <input type="checkbox" hidden id="line_checkbox4-classes"
+                                        class="line_checkbox-classes line_checkbox4-classes">
+                                    <label for="line_checkbox4-classes" class="line_fakecheckbox-classes">
+                                        <div class="fakecheckbox_tick-classes"></div>
+                                    </label>
+                                    <label for="line_checkbox4-classes" class="line_text-classes">8 клас</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="wrapper_groups-filters">
+
+                        <div class="groups_title-filter">
+                            Групи
+                        </div>
+
+                        <div class="groups_wrapper">
+
+                            <div class="wrapper_left-groups">
+
+
+                                <div class="left_line-groups">
+                                    <input type="radio" name="groups" hidden id="left_radio1-groups"
+                                        class="left_radio-groups left_radio1-groups">
+                                    <label for="left_radio1-groups" class="left_fakeradio-groups">
+                                        <div class="fakeradio_dot-groups"></div>
+                                    </label>
+                                    <label for="left_radio1-groups" class="line_text-groups">2018-1</label>
+                                </div>
+                                <div class="left_line-groups">
+                                    <input type="radio" name="groups" hidden id="left_radio2-groups"
+                                        class="left_radio-groups left_radio2-groups">
+                                    <label for="left_radio2-groups" class="left_fakeradio-groups">
+                                        <div class="fakeradio_dot-groups"></div>
+                                    </label>
+                                    <label for="left_radio2-groups" class="line_text-groups">2018-2</label>
+                                </div>
+                                <div class="left_line-groups">
+                                    <input type="radio" name="groups" hidden id="left_radio3-groups"
+                                        class="left_radio-groups left_radio3-groups">
+                                    <label for="left_radio3-groups" class="left_fakeradio-groups">
+                                        <div class="fakeradio_dot-groups"></div>
+                                    </label>
+                                    <label for="left_radio3-groups" class="line_text-groups">2020-1</label>
+                                </div>
+                                <div class="left_line-groups">
+                                    <input type="radio" name="groups" hidden id="left_radio4-groups"
+                                        class="left_radio-groups left_radio4-groups">
+                                    <label for="left_radio4-groups" class="left_fakeradio-groups">
+                                        <div class="fakeradio_dot-groups"></div>
+                                    </label>
+                                    <label for="left_radio4-groups" class="line_text-groups">2020-2</label>
+                                </div>
+
+                            </div>
+                            <div class="wrapper_right-groups">
+
+                                <div class="right_line-groups">
+                                    <input type="checkbox" id="line_checkbox1-groups" hidden
+                                        class="line_checkbox-groups line_checkbox1-groups">
+                                    <label for="line_checkbox1-groups" class="line_fakecheckbox-groups">
+                                        <div class="fakecheckbox_tick-groups"></div>
+                                    </label>
+                                    <label for="line_checkbox1-groups" class="line_text-groups">2020-3</label>
+                                </div>
+                                <div class="right_line-groups">
+                                    <input type="checkbox" hidden id="line_checkbox2-groups"
+                                        class="line_checkbox-groups line_checkbox2-groups">
+                                    <label for="line_checkbox2-groups" class="line_fakecheckbox-groups">
+                                        <div class="fakecheckbox_tick-groups"></div>
+                                    </label>
+                                    <label for="line_checkbox2-groups" class="line_text-groups">2017-1</label>
+                                </div>
+                                <div class="right_line-groups">
+                                    <input type="checkbox" hidden id="line_checkbox3-groups"
+                                        class="line_checkbox-groups line_checkbox3-groups">
+                                    <label for="line_checkbox3-groups" class="line_fakecheckbox-groups">
+                                        <div class="fakecheckbox_tick-groups"></div>
+                                    </label>
+                                    <label for="line_checkbox3-groups" class="line_text-groups">2016-6</label>
+                                </div>
+                                <div class="right_line-groups">
+                                    <input type="checkbox" hidden id="line_checkbox4-groups"
+                                        class="line_checkbox-groups line_checkbox4-groups">
+                                    <label for="line_checkbox4-groups" class="line_fakecheckbox-groups">
+                                        <div class="fakecheckbox_tick-groups"></div>
+                                    </label>
+                                    <label for="line_checkbox4-groups" class="line_text-groups">2019-2</label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrapper_module">
+
+                        <div class="module_title-filter">
+                            Модуль
+                        </div>
+
+                        <div class="module_wrapper">
+
+                            <div class="wrapper_left-module">
+
+                                <div class="left_line-module">
+                                    <input type="radio" name="module" hidden id="left_radio1-module"
+                                        class="left_radio-module left_radio1-module">
+                                    <label for="left_radio1-module" class="left_fakeradio-module">
+                                        <div class="fakeradio_dot-module"></div>
+                                    </label>
+                                    <label for="left_radio1-module" id="line_text-module-1"
+                                        class="line_text-module">Адаптивна верстка</label>
+                                </div>
+                                <div class="left_line-module">
+                                    <input type="radio" name="module" hidden id="left_radio2-module"
+                                        class="left_radio-module left_radio2-module">
+                                    <label for="left_radio2-module" class="left_fakeradio-module">
+                                        <div class="fakeradio_dot-module"></div>
+                                    </label>
+                                    <label for="left_radio2-module" class="line_text-module">Flex-box</label>
+                                </div>
+                                <div class="left_line-module">
+                                    <input type="radio" name="module" hidden id="left_radio3-module"
+                                        class="left_radio-module left_radio3-module">
+                                    <label for="left_radio3-module" class="left_fakeradio-module">
+                                        <div class="fakeradio_dot-module"></div>
+                                    </label>
+                                    <label for="left_radio3-module" class="line_text-module">Основи друку</label>
+                                </div>
+                                <div class="left_line-module">
+                                    <input type="radio" name="module" hidden id="left_radio4-module"
+                                        class="left_radio-module left_radio4-module">
+                                    <label for="left_radio4-module" class="left_fakeradio-module">
+                                        <div class="fakeradio_dot-module"></div>
+                                    </label>
+                                    <label for="left_radio4-module" class="line_text-module">СКМ</label>
+                                </div>
+
+                            </div>
+                            <div class="wrapper_right-module">
+
+                                <div class="right_line-module">
+                                    <input type="checkbox" id="line_checkbox1-module" hidden
+                                        class="line_checkbox-module line_checkbox1-module">
+                                    <label for="line_checkbox1-module" class="line_fakecheckbox-module">
+                                        <div class="fakecheckbox_tick-module"></div>
+                                    </label>
+                                    <label for="line_checkbox1-module" class="line_text-module">Алгоритмізація</label>
+                                </div>
+                                <div class="right_line-module">
+                                    <input type="checkbox" hidden id="line_checkbox2-module"
+                                        class="line_checkbox-module line_checkbox2-module">
+                                    <label for="line_checkbox2-module" class="line_fakecheckbox-module">
+                                        <div class="fakecheckbox_tick-module"></div>
+                                    </label>
+                                    <label for="line_checkbox2-module" class="line_text-module">Верстка макетів</label>
+                                </div>
+                                <div class="right_line-module">
+                                    <input type="checkbox" hidden id="line_checkbox3-module"
+                                        class="line_checkbox-module line_checkbox3-module">
+                                    <label for="line_checkbox3-module" class="line_fakecheckbox-module">
+                                        <div class="fakecheckbox_tick-module"></div>
+                                    </label>
+                                    <label for="line_checkbox3-module" class="line_text-module">Мікропроекти</label>
+                                </div>
+                                <div class="right_line-module">
+                                    <input type="checkbox" hidden id="line_checkbox4-module"
+                                        class="line_checkbox-module line_checkbox4-module">
+                                    <label for="line_checkbox4-module" class="line_fakecheckbox-module">
+                                        <div class="fakecheckbox_tick-module"></div>
+                                    </label>
+                                    <label for="line_checkbox4-module" class="line_text-module">Основи JS</label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrapper_teachers">
+
+                        <div class="teachers_title-filter">
+                            Викладач
+                        </div>
+                        <div class="teachers_right">
+                            <div class="right_line-teachers">
+                                <input type="checkbox" id="line_checkbox1-teachers" hidden
+                                    class="line_checkbox-teachers line_checkbox1-teachers">
+                                <label for="line_checkbox1-teachers" class="line_fakecheckbox-teachers">
+                                    <div class="fakecheckbox_tick-teachers"></div>
+                                </label>
+                                <label for="line_checkbox1-teachers" class="line_text-teachers">Юлія
+                                    Мирославівна</label>
+                            </div>
+                            <div class="right_line-teachers">
+                                <input type="checkbox" hidden id="line_checkbox2-teachers"
+                                    class="line_checkbox-teachers line_checkbox2-teachers">
+                                <label for="line_checkbox2-teachers" class="line_fakecheckbox-teachers">
+                                    <div class="fakecheckbox_tick-teachers"></div>
+                                </label>
+                                <label for="line_checkbox2-teachers" class="line_text-teachers">Назар
+                                    Миколайович</label>
+                            </div>
+                            <div class="right_line-teachers">
+                                <input type="checkbox" hidden id="line_checkbox3-teachers"
+                                    class="line_checkbox-teachers line_checkbox3-teachers">
+                                <label for="line_checkbox3-teachers" class="line_fakecheckbox-teachers">
+                                    <div class="fakecheckbox_tick-teachers"></div>
+                                </label>
+                                <label for="line_checkbox3-teachers" class="line_text-teachers">Олеся Петрівна</label>
+                            </div>
+                            <div class="right_line-teachers">
+                                <input type="checkbox" hidden id="line_checkbox4-teachers"
+                                    class="line_checkbox-teachers line_checkbox4-teachers">
+                                <label for="line_checkbox4-teachers" class="line_fakecheckbox-teachers">
+                                    <div class="fakecheckbox_tick-teachers"></div>
+                                </label>
+                                <label for="line_checkbox4-teachers" class="line_text-teachers">Андрій
+                                    Володимирович</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content_classes">
+
+                <div class="classes_group add_group">
+                    <div class="group_top">+</div>
+                    <div class="group_bottom">Створити нову групу</div>
+                </div>
+            </div>
+        </div>
+        <div class="container_addgroup">
+            <div class="addgroup_hints">
+                <div class="hints_title">Добавити групу:</div>
+                <div class="hints_quit">X</div>
+            </div>
+            <div class="addgroup_inputs">
+                <div class="inputs_line inputs_line1">
+                    <div class="line_title">Номер групи:</div>
+                    <input type="text" class="line_input">
+                </div>
+                <div class="inputs_line inputs_line2">
+                    <div class="line_title">Модуль групи:</div>
+                    <select name="" id="" class="line_select">
+                        <option value="Адаптивна верстка" selected class="select_option select_option1">Адаптивна
+                            верстка</option>
+                        <option value="Flex-box" class="select_option select_option2">Flex-box</option>
+                        <option value="Основи друку" class="select_option select_option3">Основи друку</option>
+                        <option value="СКМ" class="select_option select_option4">СКМ</option>
+                        <option value="Алгоритмізація" class="select_option select_option5">Алгоритмізація</option>
+                        <option value="Верстка макетів" class="select_option select_option6">Верстка макетів</option>
+                        <option value="Мікропроекти" class="select_option select_option7">Мікропроекти</option>
+                        <option value="Основи JS" class="select_option select_option8">Основи JS</option>
+                    </select>
+                </div>
+                <div class="inputs_line inputs_line3">
+                    <div class="line_title">Клас:</div>
+                    <select name="" id="" class="line_select">
+                        <option value="1 клас" selected class="select_option select_option1">1 клас</option>
+                        <option value="2 клас" class="select_option select_option2">2 клас</option>
+                        <option value="3 клас" class="select_option select_option3">3 клас</option>
+                        <option value="4 клас" class="select_option select_option4">4 клас</option>
+                        <option value="5 клас" class="select_option select_option5">5 клас</option>
+                        <option value="6 клас" class="select_option select_option6">6 клас</option>
+                        <option value="7 клас" class="select_option select_option7">7 клас</option>
+                        <option value="8 клас" class="select_option select_option8">8 клас</option>
+                    </select>
+                </div>
+                <div class="inputs_line inputs_line4">
+                    <div class="line_title">Викладач групи:</div>
+                    <select name="" id="" class="line_select">
+                        <option value="Юлія Мирославівна" selected class="select_option select_option1">Юлія
+                            Мирославівна</option>
+                        <option value="Назар Миколайович" class="select_option select_option2">Назар Миколайович
+                        </option>
+                        <option value="Олеся Петрівна" class="select_option select_option3">Олеся Петрівна</option>
+                        <option value="Андрій Володимирович" class="select_option select_option4">Андрій Володимирович
+                        </option>
+                    </select>
+                </div>
+                <div class="inputs_line inputs_line5">
+                    <div class="line_title">Розклад групи:</div>
+                    <div class="line_input">
+                        <label class="input_fakeinput" id="input_fakeinput">Виберіть розклад</label>
+                        <div class="input_dropdown">
+                            <div class="dropdown_left">
+                                <div class="left-line left_line1">
+                                    <input type="checkbox" name="" id="line_checkbox1-left"
+                                        class="line_checkbox line_checkbox-left">
+                                    <label for="line_checkbox1-left"
+                                        class="line_day-left line_day1-left">Понеділок</label>
+                                </div>
+                                <div class="left-line left_line2">
+                                    <input type="checkbox" name="" id="line_checkbox2-left"
+                                        class="line_checkbox line_checkbox-left">
+                                    <label for="line_checkbox2-left"
+                                        class="line_day-left line_day2-left">Вівторок</label>
+                                </div>
+                                <div class="left-line left_line3">
+                                    <input type="checkbox" name="" id="line_checkbox3-left"
+                                        class="line_checkbox line_checkbox-left">
+                                    <label for="line_checkbox3-left" class="line_day-left line_day3-left">Середа</label>
+                                </div>
+                            </div>
+                            <div class="dropdown_right">
+
+                                <div class="right_line right_line1">
+                                    <input type="checkbox" name="" id="line_checkbox1-right"
+                                        class="line_checkbox line_checkbox-right">
+                                    <label for="line_checkbox1-right" class="line_day line_day1">Четвер</label>
+                                </div>
+                                <div class="right_line right_line2">
+                                    <input type="checkbox" name="" id="line_checkbox2-right"
+                                        class="line_checkbox line_checkbox-right">
+                                    <label for="line_checkbox2-right" class="line_day line_day2">П'ятниця</label>
+                                </div>
+                                <div class="right_line right_line3">
+                                    <input type="checkbox" name="" id="line_checkbox3-right"
+                                        class="line_checkbox line_checkbox-right">
+                                    <label for="line_checkbox3-right" class="line_day line_day3">Субота</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="inputs_line inputs_line6">
+                    <div type="button" class="line_delete">Очистити <i class="fa-solid fa-trash line_icon-del"></i>
+                    </div>
+                    <div type="button" class="line_confirm">Зберегти <i class="fa-solid fa-paper-plane line_icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container_hide"></div>
+
+        {{>side_bar}}
+        {{>footer}}
+
+    </div>
+    <script src="https://kit.fontawesome.com/06d02fe3c8.js" crossorigin="anonymous"></script>
+    <script src="../js/teacher_client.js"></script>
+</body>
+
+</html>

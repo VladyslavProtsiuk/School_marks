@@ -1,0 +1,10 @@
+uploads/*
+.vscode/settings.json
+node_modules
+Електронний щоденник (1).zip
+Електронний щоденник (2).zip
+Електронний щоденник.zip
+css
+.env
+views/.sass-cache
+package-lock.json

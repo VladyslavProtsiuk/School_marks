@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dairy.css">
+    <title>Щоденник</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="container_forteacher">
+            {{#if show_teacher_panel}}
+            <div class="forteacher_panel">
+                <input type="radio" hidden name="hide_forteacher_panel" id="hide_panel1">
+                <input type="radio" hidden name="hide_forteacher_panel" id="hide_panel2">
+                <div class="panel_icon panel_icon1" id="panel_icon1"> {{!-- <i class="fa-solid fa-compress"></i> --}}
+                    <i class="fa-solid fa-expand"></i>
+                </div>
+                <div class="panel_icon panel_icon2" id="panel_icon2"><i class="fa-solid fa-pen-to-square"></i></div>
+                {{!-- <div class="panel_icon panel_icon2"><i class="fa-solid fa-floppy-disk"></i></div> --}}
+                {{!-- <div class="panel_icon panel_icon3" id="panel_icon3"><i class="fa-solid fa-gear"></i></div> --}}
+                <label for="hide_panel1" class="panel_icon panel_icon4" id="panel_icon4"><i
+                        class="fa-solid fa-angle-right"></i></label>
+
+            </div>
+            {{/if}}
+        </div>
+
+
+
+
+
+        <div class="container_content">
+
+            <div class="content_marks">
+                <input type="radio" hidden name="radio-helper" id="marks_radio1" checked class="marks_radio-helper">
+                <input type="radio" hidden name="radio-helper" id="marks_radio2" class="marks_radio-helper">
+                <input type="radio" hidden name="radio-helper" id="marks_radio3" class="marks_radio-helper">
+                <input type="radio" hidden name="radio-helper" id="marks_radio4" class="marks_radio-helper">
+                <input type="radio" hidden name="radio-helper" id="marks_radio5" class="marks_radio-helper">
+                <input type="radio" hidden name="radio-helper" id="marks_radio6" class="marks_radio-helper">
+                <input type="radio" hidden name="radio-helper" id="marks_radio7" class="marks_radio-helper">
+                <input type="radio" hidden name="radio-helper" id="marks_radio8" class="marks_radio-helper">
+                <input type="radio" hidden name="radio-helper" id="marks_radio9" class="marks_radio-helper">
+                <input type="radio" hidden name="radio-helper" id="marks_radio10" class="marks_radio-helper">
+                <input type="radio" hidden name="radio-helper" id="marks_radio11" class="marks_radio-helper">
+                <input type="radio" hidden name="radio-helper" id="marks_radio12" class="marks_radio-helper">
+                <div class="marks_monthes">
+                    <label for="marks_radio1" class="monthes_month monthes_month1">Січень</label>
+                    <label for="marks_radio2" class="monthes_month monthes_month2">Лютий</label>
+                    <label for="marks_radio3" class="monthes_month monthes_month3">Березень</label>
+                    <label for="marks_radio4" class="monthes_month monthes_month4">Квітень</label>
+                    <label for="marks_radio5" class="monthes_month monthes_month5">Травень</label>
+                    <label for="marks_radio6" class="monthes_month monthes_month6">Червень</label>
+                    <label for="marks_radio7" class="monthes_month monthes_month7">Липень</label>
+                    <label for="marks_radio8" class="monthes_month monthes_month8">Серпень</label>
+                    <label for="marks_radio9" class="monthes_month monthes_month9">Вересень</label>
+                    <label for="marks_radio10" class="monthes_month monthes_month10">Жовтень</label>
+                    <label for="marks_radio11" class="monthes_month monthes_month11">Листопад</label>
+                    <label for="marks_radio12" class="monthes_month monthes_month12">Грудень</label>
+                </div>
+                <div class="marks_background">
+                    {{#if show_teacher_panel}}
+                    <input type="checkbox" checked hidden name="" id="show_module">
+                    <label for="show_module" class="marking_addstudent"><i class="fa-solid fa-plus"></i> Додати
+                        учня</label>
+                    {{/if}}
+                </div>
+
+
+
+            </div>
+        </div>
+        {{> footer}}
+
+    </div>
+    {{#if show_teacher_panel}}
+    <div class="marking_module-add">
+        <div class="module_title">
+            <div class="title_left">Добавити учня:</div>
+            <label for="show_module" class="title_right"></label>
+        </div>
+        <form action="/add_user_to_group/" enctype="multipart/form-data" method="post" class="module_content"
+            autocomplete="off">
+            <div class="content_line content_line1">
+                <div class="line_title">Прізвище учня:</div>
+                <input type="text" name="user_surname" id="" class="line_input">
+            </div>
+            <div class="content_line content_line2">
+                <div class="line_title">Ім’я учня:</div>
+                <input type="text" name="user_name" id="" class="line_input">
+            </div>
+            <div class="content_line content_line3">
+                <div class="line_title">День народження:</div>
+                <input type="text" name="user_date" id="" class="line_input">
+            </div>
+            <div class="content_line content_line4">
+                <div class="line_title">Telegram учня:</div>
+                <input type="text" name="user_telegram" id="" class="line_input">
+            </div>
+            <div class="content_line content_line5">
+                <div class="line_title">Email учня:</div>
+                <input type="text" name="user_email" id="" class="line_input">
+            </div>
+            <div class="content_line content_line6">
+                <div class="line_title">Логін щоденника:</div>
+                <input type="text" name="user_login" id="" class="line_input">
+            </div>
+            <div class="content_line content_line7">
+                <div class="line_title">Пароль щоденника:</div>
+                <input type="text" name="user_passwd" id="" class="line_input">
+            </div>
+            <div class="content_line content_line8">
+                <div class="line_title">Номер телефону:</div>
+                <input type="text" name="user_number" id="" class="line_input">
+            </div>
+            <div class="content_line content_line9">
+                <div class="line_title">Фото учня:</div>
+                <div class="line_fakeinput" onclick="document.querySelector('#line_input').click()">
+                    <div class="fakeinput_opacitywindow"></div>
+                    <div class="fakeinput_plus">+</div>
+                    <div class="fakeinput_headline">Добавити фото учня 4:3</div>
+                </div>
+                <input type="file" hidden name="user_file" id="line_input" class="line_input">
+            </div>
+            <input type="text" name="user_group" hidden value="{{group}}">
+            <div class="content_line content_line10">
+                <div type="button" class="line_delete">
+                    <i class="fa-solid fa-trash line_icon-del"></i>
+                </div>
+                <button type="submit" class="line_confirm">
+                    Зберегти
+                    <i class="fa-solid fa-paper-plane line_icon"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div id="message">
+        <div class="message_text">
+            <div class="text_title">Ви увійшли у режим редагування.</div> Нажіміть на оцінку або учня, щоб редагувати.
+            Скасувати або зберегти зміни
+            можна на панелі.
+        </div>
+    </div>
+    {{/if}}
+    <div id="add_student-shadow"></div>
+    <div class="loading_window">
+        <div class="window_loader">
+            <div class="loader_dots">
+                <div class="dots_dot dots_dot1"></div>
+                <div class="dots_dot dots_dot2"></div>
+                <div class="dots_dot dots_dot3"></div>
+                <div class="dots_dot dots_dot4"></div>
+                <div class="dots_dot dots_dot5"></div>
+                <div class="dots_dot dots_dot6"></div>
+                <div class="dots_dot dots_dot7"></div>
+                <div class="dots_dot dots_dot8"></div>
+            </div>
+            <div class="window_title">Загрузка...</div>
+        </div>
+    </div>
+    {{> side_bar}}
+    <script src="https://kit.fontawesome.com/06d02fe3c8.js" crossorigin="anonymous"></script>
+    {{#if show_teacher_panel}}
+    <script src="../js/dairy_teacher.js"></script>
+    {{else}}
+    <script src="../js/dairy_student.js"></script>
+    {{/if}}
+    <script src="../js/side_bar-v2.js"></script>
+</body>
+
+</html>
+{{!-- <div class="marking_line marking_line1">
+    <div class="line_student">Процюк Владислав</div>
+    <input type="text" value="12" class="line_date line_date1">
+    <input type="text" value="12" class="line_date line_date2">
+    <input type="text" value="12" class="line_date line_date3">
+    <input type="text" value="12" class="line_date line_date4">
+    <input type="text" value="12" class="line_date line_date5">
+    <input type="text" value="12" class="line_date line_date6">
+    <input type="text" value="12" class="line_date line_date7">
+    <input type="text" value="12" class="line_date line_date8">
+    <input type="text" value="12" class="line_date line_date9">
+    <input type="text" value="12" class="line_date line_date10">
+    <input type="text" value="12" class="line_date line_date11">
+    <input type="text" value="12" class="line_date line_date12">
+    <input type="text" value="12" class="line_date line_date13">
+    <input type="text" value="12" class="line_date line_date14">
+    <input type="text" value="12" class="line_date line_date15">
+    <input type="text" value="12" class="line_date line_date16">
+    <div class="line_avarage">12</div>
+    <div class="line_avarage">12</div>
+
+</div> --}}

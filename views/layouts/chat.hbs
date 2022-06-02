@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="../css/normalize.css">
+     <link rel="stylesheet" href="../css/style.css">
+     <link rel="stylesheet" href="../css/chat.css">
+     <title>Document</title>
+</head>
+
+<body>
+     <div class="container">
+          <div class="container_chat">
+               <div class="chat_title">
+                    <div class="title_name">Андрій Володимирович</div>
+                    <div class="title_search"><i class="fa-solid fa-magnifying-glass"></i></div>
+               </div>
+               <div class="chat_messages">
+                    <div class="messages_line">
+                         <div class="line_text">Hello</div>
+                         <div class="line_avatar"></div>
+                    </div>
+               </div>
+               <form class="chat_type">
+                    <label for="addfile_input" class="type_addfile">
+                         <i class="fa-solid fa-paperclip"></i>
+                    </label>
+                    <input type="file" hidden name="file" id="addfile_input">
+                    <div class="type_write">
+                         <input type="text" placeholder="Введіть своє повідомлення" class="write_message">
+                    </div>
+                    <div class="type_emoji"><i class="fa-solid fa-icons"></i></div>
+                    <button type="submit" class="type_send"><i class="fa-solid fa-paper-plane"></i></button>
+               </form>
+          </div>
+          {{>footer}}
+     </div>
+     {{>side_bar}}
+     <script src="https://kit.fontawesome.com/06d02fe3c8.js" crossorigin="anonymous"></script>
+     <script src="../js/socket.io.js"></script>
+     <script src="../js/chat.js"></script>
+     <script src="../js/side_bar-v2.js"></script>
+</body>
+
+</html>
