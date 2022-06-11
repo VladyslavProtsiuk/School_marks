@@ -641,7 +641,7 @@ app.use(async function (req, res) {
      });
 })
 
-http.listen(3000, "192.168.0.108", function () {
+http.listen(3000, function () {
      console.clear()
      console.log("Server started on http://localhost:3000/");
 });
