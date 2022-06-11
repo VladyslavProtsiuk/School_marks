@@ -19,18 +19,80 @@
                     <div class="title_search"><i class="fa-solid fa-magnifying-glass"></i></div>
                </div>
                <div class="chat_messages">
+                    <div class="message_files">
+                         <div class="files_file">
+                              <div class="file_title">
+                                   <div class="title_text"></div>
+                                   <div class="title_close">
+                                        <div class="close_tick"></div>
+                                   </div>
+                              </div>
+                              <div class="file_content">
+                                   <img src="../img/image28.png" class="content_image">
+                              </div>
+                         </div>
+                         <div class="files_file">
+                              <div class="file_title">
+                                   <div class="title_text"></div>
+                                   <div class="title_close">
+                                        <div class="close_tick"></div>
+                                   </div>
+                              </div>
+                              <div class="file_content">
+                                   <img src="../img/image28.png" class="content_image">
+                              </div>
+                         </div>
+                         <div class="files_file">
+                              <div class="file_title">
+                                   <div class="title_text"></div>
+                                   <div class="title_close">
+                                        <div class="close_tick"></div>
+                                   </div>
+                              </div>
+                              <div class="file_content">
+                                   <img src="../img/image28.png" class="content_image">
+                              </div>
+                         </div>
+                         <div class="files_file">
+                              <div class="file_title">
+                                   <div class="title_text"></div>
+                                   <div class="title_close">
+                                        <div class="close_tick"></div>
+                                   </div>
+                              </div>
+                              <div class="file_content">
+                                   <img src="../img/image28.png" class="content_image">
+                              </div>
+                         </div>
+                    </div>
+                    <div class="message_drag" ondrop="drop(event)" ondragover="allowDrop(event)">
+                         <div class="drag_wrapper">
+                              <div class="drag_image"></div>
+                              <div class="drag_text">
+                                   Drop here
+                              </div>
+                         </div>
+
+                    </div>
                     <div class="messages_line">
-                         <div class="line_text">Hello</div>
+                         <div class="line_text">
+                              <div class="text_images">
+                                   <div class="images_image"></div>
+                              </div>
+                              <div class="text_top">Hello</div>
+                              <div class="text_bottom">14:20</div>
+                         </div>
                          <div class="line_avatar"></div>
                     </div>
+
                </div>
                <form class="chat_type">
                     <label for="addfile_input" class="type_addfile">
                          <i class="fa-solid fa-paperclip"></i>
                     </label>
-                    <input type="file" hidden name="file" id="addfile_input">
+                    <input type="file" hidden name="file" multiple id="addfile_input">
                     <div class="type_write">
-                         <input type="text" placeholder="Введіть своє повідомлення" class="write_message">
+                         <textarea placeholder="Введіть своє повідомлення" rows="1" class="write_message"></textarea>
                     </div>
                     <div class="type_emoji"><i class="fa-solid fa-icons"></i></div>
                     <button type="submit" class="type_send"><i class="fa-solid fa-paper-plane"></i></button>

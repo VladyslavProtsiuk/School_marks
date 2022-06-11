@@ -5,7 +5,7 @@ var sugetions_image = document.querySelector(".sugetions_image")
 var me_avatar = document.querySelector(".me_avatar")
 sugetions_image.classList.add("sugetions_image-active")
 me_avatar.classList.add("sugetions_image-active")
-document.querySelector(".bar_wrapper").style.marginLeft = "-10px"
+document.querySelector(".bar_wrapper").style.marginLeft = "-2.5px"
 for (var i = 0; i < icons.length; i++) {
     icons[i].classList.add("icon-active")
 }
@@ -28,7 +28,7 @@ container_close.addEventListener("click", function () {
     document.body.style.overflow = 'visible';
     sugetions_image.classList.add("sugetions_image-active")
     me_avatar.classList.add("sugetions_image-active")
-    document.querySelector(".bar_wrapper").style.marginLeft = "-10px"
+    document.querySelector(".bar_wrapper").style.marginLeft = "-2.5px"
     for (var i = 0; i < icons.length; i++) {
         icons[i].classList.add("icon-active")
     }

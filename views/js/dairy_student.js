@@ -118,17 +118,17 @@ function makeHttpObject() {
      else if ("ActiveXObject" in window) return new ActiveXObject("Msxml2.XMLHTTP");
 }
 var students = ""
-var request1 = makeHttpObject();
-request1.open("GET", "http://localhost:3000/api/1/" + window.location.href.replace("http://localhost:3000/dairy/", ""), true);
-request1.send(null);
-request1.onreadystatechange = function () {
-     if (request1.readyState == 4) {
-          if (request1.responseText != "Access denied" && request1.responseText != "No students") {
+var request = makeHttpObject();
+request.open("GET", "http://localhost:3000/api/1/", true);
+request.send(null);
+request.onreadystatechange = function () {
+     if (request.readyState == 4) {
+          if (request.responseText != "Access denied" && request.responseText != "No students") {
 
-               students = JSON.parse(request1.responseText);
+               students = JSON.parse(request.responseText);
                var group
                var request2 = makeHttpObject();
-               request2.open("GET", "http://localhost:3000/api/2/" + window.location.href.replace("http://localhost:3000/dairy/", ""), true);
+               request2.open("GET", "http://localhost:3000/api/2/", true);
                request2.send(null);
                request2.onreadystatechange = function () {
                     if (request2.readyState == 4) {
@@ -136,7 +136,7 @@ request1.onreadystatechange = function () {
                          display_marks(group)
                     }
                };
-          } else if (request1.responseText == "No students") {
+          } else if (request.responseText == "No students") {
                display_nothing()
           }
 

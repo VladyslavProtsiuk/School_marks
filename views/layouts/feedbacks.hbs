@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/feedbacks.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container_content">
+            <div class="content_wrapper">
+                <div class="wrapper_filters">
+                    <div class="filters_buttons">
+                        <input type="radio" hidden name="buttons_radio" checked id="buttons_radio1">
+                        <input type="radio" hidden name="buttons_radio" id="buttons_radio2">
+                        <input type="radio" hidden name="buttons_radio" id="buttons_radio3">
+                        <input type="radio" hidden name="buttons_radio" id="buttons_radio4">
+                        <label for="buttons_radio1" class="buttons_button buttons_button1">Усі</label>
+                        <label for="buttons_radio2" class="buttons_button buttons_button2">Відгуки учнів</label>
+                        <label for="buttons_radio3" class="buttons_button buttons_button3">Відгуки батьків</label>
+                        <label for="buttons_radio4" class="buttons_button buttons_button4">Відгуки випускників</label>
+                    </div>
+                    <div class="filters_rate">
+                        <div class="rate_selection">
+                            <input type="checkbox" hidden id="selection_checkbox">
+                            <input type="radio" hidden name="selection_radio" id="selection_radio1">
+                            <input type="radio" hidden name="selection_radio" id="selection_radio3">
+                            <input type="radio" hidden name="selection_radio" id="selection_radio2">
+                            <input type="radio" hidden name="selection_radio" id="selection_radio4">
+                            <input type="radio" hidden name="selection_radio" id="selection_radio5">
+                            <input type="radio" hidden name="selection_radio" id="selection_radio6">
+                            <input type="radio" hidden checked name="selection_radio" id="selection_radio7">
+                            <label for="selection_checkbox" class="selection_value">Усі
+                            </label>
+                            <label class="selection_options">
+                                <label for="selection_radio1" class="options_option options_option1">Відмінно - 5/5
+                                    <div class="option_stars option_stars1">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </label>
+                                <label for="selection_radio2" class="options_option options_option2">Чудово - 4/5
+                                    <div class="option_stars option_stars2">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </label>
+                                <label for="selection_radio3" class="options_option options_option3">Задоволений - 3/5
+                                    <div class="option_stars option_stars3">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </label>
+                                <label for="selection_radio4" class="options_option options_option4">Нормально - 2/5
+                                    <div class="option_stars option_stars4">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </label>
+                                <label for="selection_radio5" class="options_option options_option5">Погано - 1/5
+                                    <div class="option_stars option_stars5">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </label>
+                                <label for="selection_radio6" class="options_option options_option6">Жахливо - 0/5
+                                    <div class="option_stars option_stars6">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </label>
+                                <label for="selection_radio7" class="options_option options_option7">Усі</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrapper_feedbacks">
+
+                </div>
+                <div class="wrapper_bottom">
+                    <div class="bottom_wrapper">
+                        <div class="bottom_get">Загрузити ще...</div>
+                        <label for="add_feedback-checkbox" class="bottom_add">Додати відгук</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{>footer}}
+    </div>
+    {{>side_bar}}
+    <input type="checkbox" hidden name="" id="add_feedback-checkbox">
+    <div class="add_feedback">
+        <div class="feedback_title">
+            <div class="title_text">Добавити відгук</div>
+            <label for="add_feedback-checkbox" class="title_close"><i class="fa-solid fa-xmark"></i></label>
+        </div>
+        <div class="feedback_top">
+            <div class="top_left">
+                <div class="left_line left_line1">
+                    <div class="line_top">Прізвище:</div>
+                    <div class="line_bottom"><input type="text" class="bottom_input"></div>
+                </div>
+                <div class="left_line left_line2">
+                    <div class="line_top">Ім'я:</div>
+                    <div class="line_bottom"><input type="text" class="bottom_input"></div>
+                </div>
+            </div>
+            <div class="top_right">
+                <div class="right_line right_line1">
+                    <label for="bottom_checkbox" class="line_top">Оцінка школи:</label>
+                    <div class="line_bottom">
+                        <input type="checkbox" hidden id="bottom_checkbox">
+                        <input type="radio" hidden checked name="bottom_radio" id="bottom_radio1">
+                        <input type="radio" hidden name="bottom_radio" id="bottom_radio3">
+                        <input type="radio" hidden name="bottom_radio" id="bottom_radio2">
+                        <input type="radio" hidden name="bottom_radio" id="bottom_radio4">
+                        <input type="radio" hidden name="bottom_radio" id="bottom_radio5">
+                        <input type="radio" hidden name="bottom_radio" id="bottom_radio6">
+                        <label for="bottom_checkbox" class="bottom_value">Відмінно - 5/5
+                            <div class="option_stars option_stars1">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                        </label>
+                        <div class="bottom_options">
+                            <label for="bottom_radio1" class="options_option options_option1">Відмінно - 5/5
+                                <div class="option_stars option_stars1">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                            </label>
+                            <label for="bottom_radio2" class="options_option options_option2">Чудово - 4/5
+                                <div class="option_stars option_stars2">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                            </label>
+                            <label for="bottom_radio3" class="options_option options_option3">Задоволений - 3/5
+                                <div class="option_stars option_stars3">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                            </label>
+                            <label for="bottom_radio4" class="options_option options_option4">Нормально - 2/5
+                                <div class="option_stars option_stars4">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                            </label>
+                            <label for="bottom_radio5" class="options_option options_option5">Погано - 1/5
+                                <div class="option_stars option_stars5">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                            </label>
+                            <label for="bottom_radio6" class="options_option options_option6">Жахливо - 0/5
+                                <div class="option_stars option_stars6">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <label for="bottom_checkbox-whome" class="right_line right_line2">
+                    <div class="line_top">Хто ви для школи:</div>
+                    <div class="line_bottom">
+                        <input type="checkbox" hidden id="bottom_checkbox-whome">
+                        <input type="radio" hidden name="bottom_radio-whome" checked id="bottom_radio1-whome">
+                        <input type="radio" hidden name="bottom_radio-whome" id="bottom_radio2-whome">
+                        <input type="radio" hidden name="bottom_radio-whome" id="bottom_radio3-whome">
+                        <input type="radio" hidden name="bottom_radio-whome" id="bottom_radio4-whome">
+                        <div class="bottom_value-whome">Учень</div>
+                        <div class="bottom_options">
+                            <label for="bottom_radio1-whome" class="options_option-whome options_option1">Учень</label>
+                            <label for="bottom_radio2-whome" class="options_option-whome options_option2">Батько
+                                учня</label>
+                            <label for="bottom_radio3-whome" class="options_option-whome options_option3">Мати
+                                учня</label>
+
+                            <label for="bottom_radio4-whome"
+                                class="options_option-whome options_option4">Випускник</label>
+                        </div>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="feedback_bottom">
+            <div class="bottom_title">Відгук:</div>
+            <textarea class="bottom_textarea"></textarea>
+        </div>
+        <div class="feedback_buttons">
+            <div class="buttons_wrapper">
+                <div class="wrapper_cancel">Очистити <i class="fa-solid fa-trash line_icon-del"></i></div>
+                <div class="wrapper_confirm">Зберегти <i class="fa-solid fa-paper-plane line_icon"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="container_hide"></div>
+    <script src="https://kit.fontawesome.com/06d02fe3c8.js" crossorigin="anonymous"></script>
+    <script src="../js/side_bar-v1.js"></script>
+    <script src="../js/feedback.js"></script>
+</body>
+
+</html>

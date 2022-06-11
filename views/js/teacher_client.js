@@ -71,7 +71,7 @@ function display_groups() {
 
 var results = ""
 var request = makeHttpObject();
-request.open("GET", "http://localhost:3000/api/3/0", true);
+request.open("GET", "http://localhost:3000/api/3/", true);
 request.send(null);
 request.onreadystatechange = function () {
      if (request.readyState == 4) {

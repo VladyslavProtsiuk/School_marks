@@ -8,24 +8,19 @@ const fs = require("fs"),
      handlebars = require("express-handlebars"),
      mongodb = require("mongodb"),
      url = process.env.url,
+     fsPromises = fs.promises,
      ObjectId = mongodb.ObjectId,
      mongoClient = new mongodb.MongoClient(url),
      http = require('http').Server(app),
      {
           Server
      } = require("socket.io"),
-     io = new Server(http);
+     io = new Server(http, {
+          maxHttpBufferSize: 10485760
+     });
 
 
 let secret_code = process.env.secret_code;
-
-io.on('connection', (socket) => {
-     console.log('a user connected');
-     socket.on('chat message', (msg) => {
-          console.log('message: ' + msg.message);
-          io.emit('chat message', msg);
-     });
-});
 
 app.use(express_fileupload());
 app.set("view engine", "hbs");
@@ -45,6 +40,35 @@ app.use(
 );
 app.use(cookieParser(secret_code));
 
+app.locals.stop_link_lessons = true;
+app.locals.stop_link_chat = true;
+
+async function check_file_sytem() {
+     let not_to_return = await [],
+          to_return
+
+     not_to_return = await fsPromises.readdir("./views/uploads/")
+     for (let i = 0; i < not_to_return.length; i++) {
+          not_to_return[i] = await +not_to_return[i].slice(0, not_to_return[i].indexOf("."))
+     }
+     await not_to_return.sort(function (a, b) {
+          return a - b;
+     })
+     to_return = await not_to_return[not_to_return.length - 1] + 1
+     console.log(not_to_return)
+     return to_return
+}
+
+async function get_group(user_id) {
+     await mongoClient.connect();
+     const db = await mongoClient.db("users"),
+          collection = await db.collection("groups");
+     let [result] = await collection.find({
+          students: user_id
+     }).toArray()
+
+     return await result.name
+}
 
 async function check_cookie(request, response) {
      await mongoClient.connect();
@@ -78,17 +102,105 @@ async function check_cookie(request, response) {
      }
 }
 
-app.get("/api/:number/:num", async function (req, res) {
+io.on('connection', (socket) => {
+     console.log('a user connected');
+     socket.on('chat message', async (msg) => {
+          console.log(msg)
+          await io.emit('chat message', msg);
+          await mongoClient.connect();
+          const db = await mongoClient.db("users"),
+               collection = await db.collection("chats");
+          let request = new ObjectId(msg.chat_id)
+          let result = await collection.find({
+               _id: request
+          }).toArray()
+
+          console.log(result)
+
+          let message_array = result[0].messages
+
+          message_array.push({
+               message: msg.message,
+               time_for_msg: msg.time_for_msg,
+               time: msg.time
+          })
+
+          if (msg.files != [] && msg.files != undefined) {
+               let files_array = []
+               for (let y = 0; y < msg.files.length; y++) {
+                    let last_file = await check_file_sytem(),
+                         full_name;
+                    console.log(await msg.files[y].filename)
+                    switch (await last_file.toString().length) {
+                         case 1:
+                              full_name = await "00000" + last_file + "." + msg.files[y].filetype
+                              break;
+                         case 2:
+                              full_name = await "0000" + last_file + "." + msg.files[y].filetype
+                              break;
+                         case 3:
+                              full_name = await "000" + last_file + "." + msg.files[y].filetype
+                              break;
+                         case 4:
+                              full_name = await "00" + last_file + "." + msg.files[y].filetype
+                              break;
+                         case 5:
+                              full_name = await "0" + last_file + "." + msg.files[y].filetype
+                              break;
+                    }
+                    await fsPromises.writeFile("./views/uploads/" + full_name, msg.files[y].file)
+                    files_array.push({
+                         path: "./views/uploads/" + full_name,
+                         purpose: msg.files[y].filepurpose,
+                         type: msg.files[y].filetype
+                    })
+               }
+               message_array[message_array.length - 1].files = files_array
+          }
+
+
+
+          await collection.updateOne({
+               _id: request
+          }, {
+               $set: {
+                    messages: message_array
+               }
+          });
+
+     });
+});
+
+app.post("/create_chat/", async function (req, res) {
+     let insert_this = {},
+          permission = await check_cookie(req, res);
+     if (permission) {
+          await mongoClient.connect();
+          const db = await mongoClient.db("users"),
+               collection = await db.collection("chats");
+          insert_this["messages"] = []
+          insert_this["chat_name"] = req.body.chat_name;
+          insert_this["members"] = req.body.members;
+          await collection.insertOne(req.body);
+     }
+
+})
+
+app.get("/api/:number/", async function (req, res) {
      let param = +req.params.number,
           permission = await check_cookie(req, res);
-     await mongoClient.connect();
-     const db = await mongoClient.db("users"),
-          collection1 = await db.collection("users_info"),
-          collection2 = await db.collection("groups");
-     if (permission) {
+     if (permission == "student" || permission == "teacher") {
+          await mongoClient.connect();
+          const db = await mongoClient.db("users"),
+               collection1 = await db.collection("users_info"),
+               collection2 = await db.collection("groups"),
+               collection3 = await db.collection("chats"),
+               collection4 = await db.collection("feedbacks");
+
           let previous_step = await collection2.find({
-               name: req.params.num
+               students: req.cookies.user_id
           }).toArray();
+          console.log(param)
           switch (param) {
                case 1:
                     let students = await [],
@@ -125,11 +237,84 @@ app.get("/api/:number/:num", async function (req, res) {
                     await res.send(previous_step[0])
                     break;
                case 3:
-                    if (permission == "teacher") {
-                         let results = await collection2.find().toArray();
-                         await res.send(results)
+                    let results3 = await collection2.find().toArray();
+                    await res.send(results3)
+                    break
+               case 4:
+                    let results4 = await collection2.find().toArray();
+                    await res.send(results4)
+                    break
+               case 5:
+                    let results5 = await collection4.find().toArray();
+                    if (results5.length != 0) {
+                         await res.send(results5)
                     } else {
-                         await res.sendStatus(403)
+                         await res.send("No feedbacks")
+                    }
+
+                    break
+          }
+     }
+})
+
+app.get("/api/:number/:num", async function (req, res) {
+     let param = +req.params.number,
+          permission = await check_cookie(req, res);
+     if (permission == "teacher") {
+          await mongoClient.connect();
+          const db = await mongoClient.db("users"),
+               collection1 = await db.collection("users_info"),
+               collection2 = await db.collection("groups");
+
+          let previous_step = await collection2.find({
+               name: req.params.num
+          }).toArray();
+          console.log(param)
+          switch (param) {
+               case 1:
+                    let students = await [],
+                         request
+                    if (previous_step[0].students != undefined) {
+                         for (let i = 0; i < previous_step[0].students.length; i++) {
+                              request = await new ObjectId(previous_step[0].students[i])
+                              await students.push(await collection1.find({
+                                   _id: request
+                              }).toArray())
+                         }
+                         for (let i = 0; i < students.length; i++) {
+                              students[i] = await students[i][0]
+                         }
+
+                         for (let t = 0; t < students.length; t++) {
+                              delete students[t]._id;
+                              delete students[t].username;
+                              delete students[t].password;
+                              delete students[t].last_login;
+                         }
+
+                         students = await JSON.stringify(students)
+                         await res.send(students)
+                    } else {
+                         await res.send("No students")
+                    }
+
+                    break;
+
+               case 2:
+                    delete previous_step[0]._id;
+                    delete previous_step[0].students;
+                    await res.send(previous_step[0])
+                    break;
+               case 3:
+                    let results = await collection2.find().toArray();
+                    await res.send(results)
+                    break
+               case 5:
+                    let results5 = await collection4.find().toArray();
+                    if (results5.length != 0) {
+                         await res.send(results5)
+                    } else {
+                         await res.send("No feedbacks")
                     }
                     break
           }
@@ -146,7 +331,7 @@ app.post("/teacher/add_group", async function (req, res) {
                await mongoClient.connect()
                const db = await mongoClient.db("users"),
                     collection = await db.collection("groups");
-               await collection.insertOne(req.body);;
+               await collection.insertOne(req.body);
 
                break;
      }
@@ -189,7 +374,7 @@ app.post("/add_user_to_group", async function (req, res) {
                          telegram: req.body.user_telegram,
                          email: req.body.user_email,
                          number: req.body.user_number,
-                         avatar: "./uploads/" + filename,
+                         avatar: "./views/uploads/" + filename,
                          marks: marks
                     },
                     [first_results] = await collection.find({
@@ -201,7 +386,7 @@ app.post("/add_user_to_group", async function (req, res) {
                          name: req.body.user_group,
                     })
                     .toArray();
-               await image.mv("./uploads/" + filename)
+               await image.mv("./views/uploads/" + filename)
                await collection.insertOne(user);
                await results.students.push(id)
                await another_collection.updateOne({
@@ -255,12 +440,21 @@ app.post("/update_marks/", async function (req, res) {
 
 })
 
+app.post("/add_feedback/", async function (req, res) {
+     console.log("ok")
+     await mongoClient.connect();
+     const db = await mongoClient.db("users"),
+          collection = await db.collection("feedbacks");
+     await collection.insertOne(req.body)
+})
+
 app.post("/logination/", async function (req, res) {
      console.log(req.body)
      await mongoClient.connect();
      const db = await mongoClient.db("users"),
           collection = await db.collection("users_info"),
-          another_collection = await db.collection("groups");
+          another_collection = await db.collection("groups"),
+          today = new Date();
      let results = await collection
           .find({
                username: req.body.login,
@@ -284,18 +478,20 @@ app.post("/logination/", async function (req, res) {
                          last_login: date
                     }
                })
+
                if (req.body.notforget == true) {
+                    let that_day = new Date(today)
+                    that_day.setDate(that_day.getDate() + 4)
                     await res.cookie("user_id", results[0]._id.toString(), {
-                         maxAge: 345600
+                         expires: that_day
                     })
                     await res.cookie("time", date, {
-                         maxAge: 345600
+                         expires: that_day
                     })
                } else {
                     await res.cookie("user_id", results[0]._id.toString())
                     await res.cookie("time", date)
                }
-
 
                if (results[0].permission == "teacher") {
                     res.send({
@@ -306,7 +502,7 @@ app.post("/logination/", async function (req, res) {
                if (results[0].permission == "student") {
                     res.send({
                          error: "",
-                         do: `window.location.href = "http://localhost:3000/dairy/` + another_res[0].name + `"`,
+                         do: `window.location.href = "http://localhost:3000/dairy/"`,
                     });
                }
           } else {
@@ -323,21 +519,61 @@ app.post("/logination/", async function (req, res) {
      }
 });
 
+app.get("/dairy/", async function (req, res) {
+     await mongoClient.connect()
+     const db = await mongoClient.db("users"),
+          collection = await db.collection("groups")
+     let user_group = await get_group(req.cookies.user_id)
+     let [result] = await collection.find({
+          name: user_group
+     }).toArray()
+     console.log(result)
+     if (result != undefined) {
+          let permission = await check_cookie(req, res)
+          if (permission == "student") {
+               await res.render("layouts/dairy", {
+                    layout: "dairy",
+                    show_teacher_panel: false,
+                    group: user_group,
+                    stop_link_lessons: false
+               });
+          }
+     } else {
+          await res.render("layouts/404", {
+               layout: "404",
+
+          });
+     }
+
+     // await res.render("layouts/dairy", {
+     //      layout: "dairy",
+     //      show_teacher_panel: true,
+     //      group: user_group,
+     //      stop_link_lessons: false
+     // });
+})
+
 app.get("/dairy/:num", async function (req, res) {
      let permission = await check_cookie(req, res)
-     switch (permission) {
-          case "student":
+     if (permission == "teacher") {
+          await mongoClient.connect()
+          const db = await mongoClient.db("users"),
+               collection = await db.collection("groups")
+          let [result] = await collection.find({
+               name: req.params.num
+          }).toArray()
+          console.log(result)
+          if (result != undefined) {
                await res.render("layouts/dairy", {
                     layout: "dairy",
-                    show_teacher_panel: false
+                    show_teacher_panel: true,
+                    stop_link_lessons: false
                });
-               break;
-          case "teacher":
-               await res.render("layouts/dairy", {
-                    layout: "dairy",
-                    show_teacher_panel: true
+          } else {
+               await res.render("layouts/404", {
+                    layout: "404",
                });
-               break;
+          }
      }
 
 })
@@ -348,21 +584,47 @@ app.get("/teacher/", async function (req, res) {
           case "student":
                await res.render("layouts/access_denied", {
                     layout: "access_denied",
+
                });
                break;
           case "teacher":
                await res.render("layouts/teacher_client", {
                     layout: "teacher_client",
+
                });
 
                break;
      }
 });
 
+app.get("/feedbacks", async function (req, res) {
+     let permission = await check_cookie(req, res)
+     if (permission == "student") {
+          await res.render("layouts/feedbacks", {
+               layout: "feedbacks",
+               stop_link_feedbacks: false,
+               permission: "student"
+          })
+     } else if (permission == "teacher") {
+          await res.render("layouts/feedbacks", {
+               layout: "feedbacks",
+               stop_link_feedbacks: false,
+               permission: "teacher"
+          })
+     } else {
+          await res.render("layouts/chat", {
+               layout: "chat",
+               stop_link_feedbacks: false,
+               permission: "anonym"
+          })
+     }
+})
+
 app.get("/chat", async function (req, res) {
      if (await check_cookie(req, res)) {
           await res.render("layouts/chat", {
-               layout: "chat"
+               layout: "chat",
+               stop_link_chat: false
           })
      }
 })
@@ -373,13 +635,13 @@ app.get("/", function (req, res) {
      });
 });
 
-app.use(function (req, res) {
-     res.render("layouts/404", {
+app.use(async function (req, res) {
+     await res.render("layouts/404", {
           layout: "404",
      });
 })
 
-http.listen(3000, function () {
+http.listen(3000, "192.168.0.108", function () {
      console.clear()
      console.log("Server started on http://localhost:3000/");
 });
