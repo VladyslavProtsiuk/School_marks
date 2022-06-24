@@ -1,19 +1,11 @@
-// function sundaysInMonth(m, y) {
-//     var days = new Date(y, m, 0).getDate();
-//     var sundays = [8 - (new Date(m + '/01/' + y).getDay())];
-//     for (var i = sundays[0] + 7; i < days; i += 7) {
-//         sundays.push(i);
-//     }
-//     return sundays;
-// }
-
 function display_avarage() {
      var marks_marking = document.querySelectorAll(".marks_marking");
      for (var t = 0; t < marks_marking.length; t++) {
           var collection = marks_marking[t].children
           var lines = []
           for (var h = 0; h < collection.length; h++) {
-               lines[h] = collection[h]
+               lines.push(collection[h])
+
           }
 
           var marks
@@ -42,13 +34,14 @@ function display_avarage() {
                          }
                     }
                }
-               var end_avarage_0 = Math.round((summary_0 * 2) / (marks.length - (3 + minus_0)))
-               var end_avarage_1 = Math.round((summary_1 * 2) / (marks.length - (3 + minus_1)))
-
-               if (end_avarage_0 != 0) {
+               // console.log(summary_0, marks.length, minus_0)
+               var end_avarage_0 = Math.round((summary_0) / ((marks.length - 3) / 2 - (minus_0)))
+               var end_avarage_1 = Math.round((summary_1) / ((marks.length - 3) / 2 - (minus_1)))
+               console.log(end_avarage_0)
+               if (end_avarage_0) {
                     marks[marks.length - 2].innerText = end_avarage_0
                }
-               if (end_avarage_1 != 0) {
+               if (end_avarage_1) {
                     marks[marks.length - 1].innerText = end_avarage_1
                }
 
