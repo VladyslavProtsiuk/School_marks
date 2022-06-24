@@ -302,7 +302,7 @@ waitForElm('.marking_template').then(() => {
           }
           display_avarage()
           var edited_info = []
-          if (edited.length == 0) {
+          if (edited.length !== 0) {
                for (var g = 0; g < edited.length; g++) {
                     var month_id = edited[g].parentElement.parentElement.classList[1].slice(14) - 1
                     var date_parents = []
