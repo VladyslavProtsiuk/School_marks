@@ -233,7 +233,7 @@ function makeHttpObject() {
     else if ("ActiveXObject" in window) return new ActiveXObject("Msxml2.XMLHTTP");
 }
 var request = makeHttpObject();
-request.open("GET", "/api/5/", true);
+request.open("GET", "/api_feedbacks/", true);
 request.send(null);
 request.onreadystatechange = function () {
     if (request.readyState == 4) {

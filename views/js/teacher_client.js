@@ -71,7 +71,7 @@ function display_groups() {
 
 var results = ""
 var request = makeHttpObject();
-request.open("GET", "http://localhost:3000/api/3/", true);
+request.open("GET", "http://localhost:3000/api/3/0", true);
 request.send(null);
 request.onreadystatechange = function () {
      if (request.readyState == 4) {
@@ -115,11 +115,7 @@ waitForElm('.classes_group1').then(() => {
      document.querySelector(".loading_window").classList.add("window-active");
      console.log(document.querySelectorAll(".classes_group").length)
      if (document.querySelectorAll(".classes_group").length <= 3) {
-          document.querySelector(".content_classes").classList.add('content_classes-1')
           document.querySelector(".footer").classList.add("footer_absolute")
-     }
-     if (document.querySelectorAll(".classes_group").length < 7 && document.querySelectorAll(".classes_group").length > 3) {
-          document.querySelector(".content_classes").classList.add('content_classes-2')
      }
      document
           .querySelector(".input_dropdown")

@@ -447,7 +447,12 @@
         </div>
         <div class="container_hide"></div>
 
+
+        {{#if permission}}
+        {{>side_bar_teacher}}
+        {{else}}
         {{>side_bar}}
+        {{/if}}
         {{>footer}}
 
     </div>

@@ -17,6 +17,7 @@
     "express-handlebars": "^6.0.3",
     "mongodb": "^4.4.1",
     "nodemon": "^2.0.16",
+    "prompt-sync": "^4.2.0",
     "socket.io": "^4.5.1"
   }
 }

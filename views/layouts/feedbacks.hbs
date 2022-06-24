@@ -111,7 +111,11 @@
     </div>
     {{>footer}}
     </div>
+    {{#if permission}}
+    {{>side_bar_teacher}}
+    {{else}}
     {{>side_bar}}
+    {{/if}}
     <input type="checkbox" hidden name="" id="add_feedback-checkbox">
     <div class="add_feedback">
         <div class="feedback_title">

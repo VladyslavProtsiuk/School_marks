@@ -1,0 +1,56 @@
+.container {
+    height: calc(100vh - 75px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer {
+    position: absolute;
+    top: calc(100vh - 75px);
+}
+
+.container_content {
+    margin-top: 50px;
+    display: flex;
+    width: 70%;
+    height: 500px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.left_image {
+    width: 350px;
+    height: 350px;
+    background: url("../img/logo.png");
+    background-size: cover;
+    animation-name: roll;
+    animation-duration: 6s;
+    animation-delay: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+.right_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right_title h1 {
+    font-size: 44px;
+}
+
+.content_left,
+.content_right {
+    width: 50%;
+}
+
+@keyframes roll {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

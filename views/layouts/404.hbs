@@ -29,7 +29,11 @@
 
     </div>
 
-    {{> side_bar}}
+    {{#if permission}}
+    {{>side_bar_teacher}}
+    {{else}}
+    {{>side_bar}}
+    {{/if}}
     <script src="https://kit.fontawesome.com/06d02fe3c8.js" crossorigin="anonymous"></script>
     <script src="../js/side_bar-v2.js"></script>
 </body>
