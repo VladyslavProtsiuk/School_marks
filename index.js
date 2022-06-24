@@ -451,10 +451,7 @@ app.post("/logination/", async function (req, res) {
           .find({
                username: req.body.login,
           })
-          .toArray(),
-          another_res = await another_collection.find({
-               students: results[0]._id.toString()
-          }).toArray();
+          .toArray()
 
      if (results.length != 0) {
           if (results[0].password == req.body.password) {
