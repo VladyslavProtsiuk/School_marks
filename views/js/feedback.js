@@ -205,7 +205,7 @@ wrapper_confirm.addEventListener("click", function () {
     options_option_whome[0].click()
     options_option[7].click()
     bottom_checkbox.checked = false
-    postData(window.location.href.replace("/feedbacks", "") + "/add_feedback/", object_to_send)
+    postData("/add_feedback/", object_to_send)
     document.location.reload()
 })
 

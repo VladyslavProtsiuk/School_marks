@@ -1,10 +1,3 @@
-const {
-     application
-} = require("express");
-const {
-     type
-} = require("os");
-
 require("dotenv").config();
 const fs = require("fs"),
      express = require("express"),
@@ -624,6 +617,12 @@ app.get("/personal_cabinet/", async function (req, res) {
 app.get("/", function (req, res) {
      res.render("layouts/index", {
           layout: "index",
+     });
+});
+
+app.get("/vue_test", function (req, res) {
+     res.render("layouts/vue_test", {
+          layout: "vue_test",
      });
 });
 
